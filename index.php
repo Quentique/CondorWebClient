@@ -25,6 +25,6 @@ $_SESSION[$value] = $row['value'];
 		<title>Condor</title>
 	</head>
 	<body>
-		<?php include('header.php'); include('navbar.php'); include('maps.php'); include('footer.php');?>
+		<?php include('header.php'); include('navbar.php'); include('posts.php'); include('footer.php');?>
 	</body>
 </html>
