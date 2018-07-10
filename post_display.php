@@ -32,9 +32,13 @@ if (isset($_GET['id'])) {
 #content div {
 	text-align: justify;
 }
-#content img {
+.img_pra {
 	max-width: 500px;
 	max-height: 500px;
+	width: auto;
+	height: auto;
+}
+#content img {
 	width: auto;
 	height: auto;
 }

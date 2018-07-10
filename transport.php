@@ -1,8 +1,8 @@
 <!-- <iframe src="https://www.optymo.fr/infos_trafic/" style="width:100%; height:500px;" frameborder="0"></iframe>
 <iframe src="https://www.sncf.com/fr/gares/belfort/OCE87184002/" style="width: 100%; height: 500px;" frameborder="0"></iframe> -->
 <div class="grid-2-small-1-tiny-1 has-gutter-xl center" id="transport" >
-	<a class="button1" target="_blank" rel="noopener noreferrer" href="https://www.optymo.fr/infos_trafic/" class="btn--primary"><img src="optymo.png" class="center" alt="Optymo"/></a>
-	<a class="button1" target="_blank" rel="noopener noreferrer" href="https://www.sncf.com/fr/gares/belfort/OCE87184002/" class="btn" alt="SNCF"><img src="sncf.png" class="center"/></a>
+	<a class="button1" target="_blank" rel="noopener noreferrer" href="https://www.optymo.fr/infos_trafic/" class="btn--primary"><div class="c"><img src="bus.png" class="center" alt="Optymo"/><h2>Optymo</h2><h3>Infos trafic</h3></div></a>
+	<a class="button1" target="_blank" rel="noopener noreferrer" href="https://www.sncf.com/fr/gares/belfort/OCE87184002/" class="btn" alt="SNCF"><div class="c"><img src="train.png" class="center"/><h2>SNCF</h2><h3>Gare de Belfort Ville</h3></div></a>
 </div>
 <style>
 .button1 {
@@ -26,6 +26,12 @@
 	padding: 0 10%;
 	margin-bottom: 2%;
 }
+#transport h2, #transport h3 {
+	text-decoration: none;
+}
+#transport h3 {
+	font-style: italic;
+}
 @media screen and (min-width: 768px) {
 	
 .button1:before {
@@ -35,9 +41,10 @@
     height: 100%;
 }
 
-.button1 img {
+.c {
 	width: 30rem;
 	display: inline-block;
+	vertical-align: middle;
 }
 }
 @media screen and (max-width: 479px)  {
