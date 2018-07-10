@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 /*<div class="post-date">
 			<p class="default-date">
 			<span id="wday"><?php echo $days[$date['wday']]; ?></span>
@@ -23,9 +23,7 @@
 		$bdd = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USERNAME, DB_PASSWORD);
 		$request = $bdd->query("SELECT * FROM " . TABLE_GENERAL . " WHERE name = 'website'");
 		$url = $request->fetch();
-		$request = $bdd->query("SELECT * FROM " . TABLE_GENERAL . " WHERE name = 'categories'");
-		$categories = $request->fetch();
-		$categories = json_decode($categories['value'], true);
+		$categories = json_decode($_SESSION['categories'], true);
 		$categories['rss'] = "Flux RSS";
 		$request = $bdd->prepare("SELECT id, name, REGEXP_SUBSTR (content, '.{400}?') AS content, date, picture, categories FROM ".TABLE_POSTS." WHERE state = 'published' ".$to_add." LIMIT 100");
 		$array = array();

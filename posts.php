@@ -1,3 +1,4 @@
+
 <link rel="stylesheet" href="style_posts.css"/>
 <script>
 $('document').ready(function() {
@@ -12,9 +13,12 @@ $('document').ready(function() {
 			$('#send').trigger('click');
 		}
 	});
-	$('.article').click(function() {
+	$('#posts_feed').on('click', '.article', function() {
 		if ($(this).attr('id').startsWith('h')) {
 			window.open($(this).attr('id'));
+		} else {
+			$('.loader').show();
+			$('#content').load('post_display.php?id='+$(this).attr("id"), function() { $('.loader').hide(); });
 		}
 	});
 	
@@ -37,85 +41,55 @@ $('document').ready(function() {
 	});
 	$('#posts_feed').on('click', '.link_cat', function(e) {
 		e.preventDefault();
+		e.stopPropagation();
 		$('#search').val("");
 		$('#all').prop('checked', false);
 		$('.checkbox').prop('checked', false);
 		$('input[value="'+$(this).attr('href')+'"]').prop('checked', true);
 		$('#send').trigger('click');
 	});
+	$.fn.animateRotate = function(angle, duration, easing, complete) {
+  var args = $.speed(duration, easing, complete);
+  var step = args.step;
+  return this.each(function(i, e) {
+    args.complete = $.proxy(args.complete, e);
+    args.step = function(now) {
+      $.style(e, 'transform', 'rotate(' + now + 'deg)');
+      if (step) return step.apply(e, arguments);
+    };
+
+    $({deg: 0}).animate({deg: angle}, args);
+  });
+};
+	$('#display_search').click(function() {
+		var one, two;
+		if ($(this).hasClass("icon-arrow--down")) {
+			one = "icon-arrow--down";
+			two = "icon-arrow--up";
+			$('#form').slideDown();
+		} else {
+			$('#form').slideUp();
+			two = "icon-arrow--down";
+			one = "icon-arrow--up";
+		}
+		$(this).animateRotate(180, 500, "swing", function() {
+			$(this).removeClass(one).addClass(two).css("transform", "");
+		});
+	});
 });
 </script>
 
 <style>
-#search_block {
 
-}
-#content {
-	position: relative;
-	z-index: 0;
-}
-#search_block {
-	width: 25%;
-	padding: 10px;
-	position: absolute;
-	right: 20px;
-	top: 0px;
-	z-index: 2;
-	
-	background-color:white;
-	border: solid 1px white;
-	border-radius: 5px;
-	box-shadow: 2px 2px 1px #F3F3F3;
-}
-#form {
-	
-}
-#form table {
-	margin-top: 10px;
-	display: block;
-	overflow: scroll;
-	overflow-x: auto;
-	overflow-y: scroll;
-	height: 100px;
-}
-#mobile_search {
-	display: none;
-}
-#form table tr td:first-child {
-	text-align: center;
-}
-#form table tr td:nth-child(2) {
-	padding-left: 10px;
-}
-.loader {
-	position: absolute;
-	left: 50%;
-	z-index: 3;
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: spin 2s ease-in infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
 </style>
 <?php
-	require_once('db_constants.php');
-	$bdd = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USERNAME, DB_PASSWORD);
-	$request = $bdd->query("SELECT * FROM " . TABLE_GENERAL . " WHERE name = 'categories'");
-	$categories = $request->fetch();
-	$categories = json_decode($categories['value'], true);
+	$categories = json_decode($_SESSION['categories'], true);
 	$categories['rss'] = "Flux RSS";
 ?>
-<div id="content">
+<div id="content_posts">
 <div id="container" class="grid-2-small-1">
 <div>
-<h1>Billets et actualités</h1>
+<h1 id="title" >Billets et actualités</h1>
 </div>
 <div class="loader"></div>
 <div id="search_block">
@@ -134,7 +108,7 @@ $('document').ready(function() {
 				}
 			?>
 			</table>
-			<button type="button" class="btn right" id="send"><i class="fa fa-search fa-x"></i></button>
+			<button type="button" class="btn--inverse" id="send"><i class="fa fa-search fa-x"></i></button>
 			</form>
 		</div>
 	</div>

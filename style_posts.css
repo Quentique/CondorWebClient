@@ -1,18 +1,26 @@
+/* CONTAINER */ 
 #posts_feed {
 	width: 100%;
+	display: -webkit-flex;
 	display: flex;
+	-webkit-flex-flow: column;
 	flex-flow: column;
 }
-
+#title {
+	margin-left: 20px;
+}
+#form table {
+	margin-top: 10px;
+	display: block;
+}
 .article {
 	width: 75%;
 	max-height: 500px;
-	margin: 20px 40px;
-	padding: 20px;
 	
 	display: flex;
 	text-align: justify;
 	cursor: pointer;
+	-webkit-flex-flow: row;
 	flex-flow: row;
 	
 	background-color: #FEFEFE;
@@ -28,10 +36,6 @@
 	border-color: #F5F5F5;
 	box-shadow: -4px 4px 2px #BDBDBD;
 }
-.default-date span {
-	display:block;
-	text-align: center;
-}
 #posts_feed .article:nth-child(2n) .img_pra {
 	order: 1;
 	margin-right: 10px;
@@ -41,7 +45,9 @@
 	order: 2;
 }
 #posts_feed .article:nth-child(2n) {
-	align-self: end;
+	-webkit-align-self: flex-end;
+	-ms-flex-item-align: flex-end;
+	align-self: flex-end;
 	box-shadow: 4px 4px 2px #D0D0D0;
 }
 #posts_feed .article:nth-child(2n):hover {
@@ -67,4 +73,101 @@
 .link_cat:hover {
 	color: #9e9e9e;
 	text-decoration: none;
+}
+#send:hover {
+	background-color: #BDBDB;
+}
+#form table tr td:first-child {
+	text-align: center;
+}
+#form table tr td:nth-child(2) {
+	padding-left: 10px;
+}
+/* ANIMATION */
+.loader {
+	position: absolute;
+	left: 50%;
+	z-index: 3;
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s ease-in infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* RESPONSIVE */ 
+@media screen and (min-width: 768px) {
+	.article {
+		margin: 20px 40px;
+		padding: 20px;
+	
+	}
+	#content_posts {
+		position: relative;
+		z-index: 0;
+	}
+	#search_block {
+		width: 25%;
+		padding: 10px;
+		position: absolute;
+		right: 20px;
+		top: 0px;
+		z-index: 2;
+		
+		background-color:white;
+		border: solid 1px white;
+		border-radius: 5px;
+		box-shadow: 2px 2px 1px #F3F3F3;
+	}
+	#form table {
+		overflow: scroll;
+		overflow-x: auto;
+		overflow-y: scroll;
+		height: 100px;
+	}
+	#mobile_search {
+		display: none;
+	}
+}
+@media screen and (max-width: 767px) {
+	.article {
+		margin: 10px 20px;
+		padding: 10px;
+	}
+	#search_block {
+		background-color: white;
+		padding: 0 1rem;
+		margin-bottom: 2rem;
+	}
+	#form {
+		display: none;
+		padding: 0 2rem;
+	}
+	#form_table {
+		height: auto;
+		overflow: visible;
+	}
+	#mobile_search {
+		font-size: 16px;
+		padding: 7px;
+		margin-bottom: 2px;
+		transition: display 2s;
+		transition-timing-function: ease-out;
+	}
+	#mobile_search, #field {
+		flex-direction: row;
+	}
+	#send {
+		width: 100%;
+		margin-bottom: 2rem;
+	}
+	#send i {
+		margin: 0 auto;
+	}
 }

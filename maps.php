@@ -1,86 +1,9 @@
 <script src="script_maps.js"></script>
+<link rel="stylesheet" href="style_maps.css"/>
 <script id="script_to_replace">
 
 </script>
-<style>
-#field {
-	width: auto;
-	margin-bottom: 1rem;
-	flex-direction: row;
-}
-#field *{
-	vertical-align: middle;
-}
-#launch {
-	margin: auto auto;
-}
 
-#results {
-	display: block;
-	width: 100%;
-}
-#desc {
-	font-style: italic;
-}
-#place {
-	width: 5%;
-}
-#mobile_container {
-	height: 20%;
-	margin-bottom: 2.5rem;
-}
-#info {
-	padding-left: 2%;
-}
-#map_container {
-	position: relative;
-	margin-bottom: 3rem;
-}
-#select_map {
-	width: 100%;
-}
-hr {
-	margin: 1em 0 1em 0;
-}
-#information_text {
-	font-style: italic;
-}
-@media screen and (min-width: 768px) {
-	#mobile_search {
-		display: none;
-	}
-	#form {
-		width: 50%;
-		min-width: 250px;
-		margin-right: 2%;
-	}
-	.flex-container {
-		flex-direction: row;
-	}
-}
-
-@media screen and (max-width: 767px) {
-	#form_container {
-		background-color: white;
-		padding: 0 1rem;
-		padding-bottom: 2rem;
-	}
-	#form {
-		display: none;
-	}
-	#mobile_search {
-		font-size: 16px;
-		padding: 7px;
-		margin-bottom: 2px;
-		flex-direction: row;
-		transition: display 2s;
-		transition-timing-function: ease-out;
-	}
-	#information_text {
-		display: none;
-	}
-}
-</style>
 <div id="mobile_container" class="grid-2-small-1">
 	<div id="info"> 
 	<h2 id="title">Cartes & Plans</h2>
