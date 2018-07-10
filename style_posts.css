@@ -161,6 +161,7 @@
 		transition-timing-function: ease-out;
 	}
 	#mobile_search, #field {
+		-webkit-flex-direction: row;
 		flex-direction: row;
 	}
 	#send {

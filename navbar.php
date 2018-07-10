@@ -60,8 +60,8 @@
 </style>
 <nav class="topnav" id="myTopnav">
   <a href="#home" class="fa fa-home fa-* active"><i></i></a>
-  <a href="#news">Actualités</a>
-  <a href="#contact">Évènements</a>
+  <a href="#news" class="active">Actualités</a>
+  <a href="#contact" class="active">Évènements</a>
   <a href="#about" class="active">Cantine</a>
   <a href="#test" class="active">CVL & MDL</a>
   <a href="#test" class="active" >Plans</a>
