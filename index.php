@@ -2,7 +2,7 @@
 session_start();
 require_once('db_constants.php');
 $bdd = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USERNAME, DB_PASSWORD);
-$liste = ["name", "adresse", "cover", "adresse", "color"];
+$liste = ["name", "adresse", "cover", "adresse", "color", "categories"];
 foreach ($liste as $key => $value) {
 $request = $bdd->prepare("SELECT * FROM " . TABLE_GENERAL . " WHERE name = :id");
 $request->bindParam(":id", $value);
@@ -25,6 +25,10 @@ $_SESSION[$value] = $row['value'];
 		<title>Condor</title>
 	</head>
 	<body>
-		<?php include('header.php'); include('navbar.php'); include('posts.php'); include('footer.php');?>
+		<?php include('header.php'); include('navbar.php');?>
+		<div id="content">
+		<?php include("posts.php"); ?>
+		</div>
+		<?php include("footer.php"); ?>
 	</body>
 </html>
