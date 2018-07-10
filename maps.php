@@ -113,5 +113,5 @@ hr {
 </div>
 <div id="map_container">
 	<img id="place" src="place.png" style="position:absolute; top:0; left:0;"/>
-	<img id="map" src="<?php echo "http://192.168.0.20:81/"."maps/GEN.png";?>"/>
+	<img id="map" src="<?php echo "http://127.0.0.1:81/condor/"."maps/GEN.png";?>"/>
 </div>
