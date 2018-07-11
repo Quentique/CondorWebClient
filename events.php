@@ -45,7 +45,6 @@
 			<?php
 		}
 	}
-	echo 'test';
 ?>
 <style>
 

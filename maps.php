@@ -3,7 +3,18 @@
 <script id="script_to_replace">
 
 </script>
-
+<?php 
+if (isset($_GET['id'])) {
+	?>
+	<script>
+		$('document').ready(function() {
+			$('#search').val("<?php echo $_GET['id']; ?>");
+			$('#launch').trigger('click');
+		});
+	</script>
+	<?php
+}
+?>
 <div id="mobile_container" class="grid-2-small-1">
 	<div id="info"> 
 	<h2 id="title">Cartes & Plans</h2>

@@ -23,11 +23,11 @@ $_SESSION[$value] = $row['value'];
 	box-shadow: 2px 2px 1px 1px #ccc;
 }
 #contact div {
-padding: 0.6rem;
-background-color: #EFEFEF;
-border: solid 1px #EFEFEF;
-box-shadow: 2px 2px 1px 1px #C0C0C0;
-border-radius: 7px;
+	padding: 0.6rem;
+	background-color: #EFEFEF;
+	border: solid 1px #EFEFEF;
+	box-shadow: 2px 2px 1px 1px #C0C0C0;
+	border-radius: 7px;
 }
 #contact a {
 	text-decoration: none;
@@ -37,6 +37,17 @@ border-radius: 7px;
 	border-color:  #DCDCDC;
 	cursor: pointer;
 	box-shadow-color: #A9A9A9;
+}
+@media screen and (max-width: 767px) {
+	#contact div {
+		margin: 10px auto;
+	}
+	#social_networks img {
+		width: auto;
+	}
+	#social_networks {
+		margin: 0 auto;
+	}
 }
 </style>
 <div class="grid-2-tiny-1 has-gutter-l">
@@ -54,7 +65,7 @@ border-radius: 7px;
 			<a href="mailto:<?php echo $_SESSION['mail']; ?>"><?php echo $_SESSION['mail']; ?></a>
 		</div>
 	</div>
-	<div id="social_networks" class="grid-2-tiny-2">
+	<div id="social_networks" class="grid-2-small-2-tiny-2">
 		<a class='right' target="_blank" rel="noopener noreferrer" style="width: 9.5rem; padding-right: 0.5rem; padding-top: 0.5rem;" href="http://facebook.com/pg/<?php echo $_SESSION['facebook']; ?>"><img src="facebook.png"/></a>
 		<a class='left' style="margin-right: auto;" target="_blank" rel="noopener noreferrer" href="<?php echo $_SESSION['twitter']; ?>"><img src="twitter.png"/></a>
 		<a  class='right' target="_blank" rel="noopener noreferrer" href="<?php echo $_SESSION['website']; ?>"><img src="highschool.png"/></a>

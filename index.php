@@ -4,12 +4,12 @@ require_once('db_constants.php');
 $bdd = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USERNAME, DB_PASSWORD);
 $liste = ["name", "adresse", "cover", "adresse", "color", "categories"];
 foreach ($liste as $key => $value) {
-$request = $bdd->prepare("SELECT * FROM " . TABLE_GENERAL . " WHERE name = :id");
-$request->bindParam(":id", $value);
-if ($request->execute()) {
-$row = $request->fetch();
-} else { $row['value'] = ""; }
-$_SESSION[$value] = $row['value'];
+	$request = $bdd->prepare("SELECT * FROM " . TABLE_GENERAL . " WHERE name = :id");
+	$request->bindParam(":id", $value);
+	if ($request->execute()) {
+		$row = $request->fetch();
+	} else { $row['value'] = ""; }
+	$_SESSION[$value] = $row['value'];
 }
 ?>
 <!DOCTYPE html>
@@ -23,12 +23,36 @@ $_SESSION[$value] = $row['value'];
 		<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="script.js"></script>
 		<title>Condor</title>
 	</head>
 	<body>
+			<?php 
+			$data = array("posts", "events", "maps", "cvl", "transport", "canteen");
+			if(isset($_GET['module']) && in_array($_GET['module'], $data, true)) {
+				$var = "";
+				if (isset($_GET['id'])) {
+					switch ($_GET['id']) {
+						case 'posts':
+								$var = 'post_display.php?id='.$_GET['id'];
+						break;
+						case 'maps':
+								$var = 'maps.php?id='.$_GET['id'];
+						break;
+					}
+				} else {
+					$var = $_GET['module'].'.php';
+				}
+			} else {
+				$var = 'index_content.php';
+			}
+			?>
+			<!-- <script>$('document').ready(function() { $('#content').load("<?php echo $var; ?>"); });</script>-->
+			
 		<?php include('header.php'); include('navbar.php');?>
+		<div class="loader"></div>
 		<div id="content">
-		<?php include("events.php"); ?>
+			<?php include($var); ?>
 		</div>
 		<?php include("footer.php"); ?>
 	</body>

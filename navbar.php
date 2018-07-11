@@ -59,13 +59,13 @@
 }
 </style>
 <nav class="topnav" id="myTopnav">
-  <a href="#home" class="fa fa-home fa-* active"><i></i></a>
-  <a href="#news" class="active">Actualités</a>
-  <a href="#contact" class="active">Évènements</a>
-  <a href="#about" class="active">Cantine</a>
-  <a href="#test" class="active">CVL & MDL</a>
-  <a href="#test" class="active" >Plans</a>
-  <a href="#test" class="active">Transports</a>
+  <a data-id="" href="index_content.php" class="fa fa-home fa-* active"><i></i></a>
+  <a data-id="post" href="posts.php" >Actualités</a>
+  <a data-id="event" href="events.php">Évènements</a>
+  <a data-id="cantine" href="canteen.php">Cantine</a>
+  <a data-id="cvl" href="cvl.php" >CVL & MDL</a>
+  <a data-id="maps" href="maps.php" >Plans</a>
+  <a data-id="transport" href="transport.php">Transports</a>
  <!-- <a href="javascript:void(0);" class="nav-button" >
 <i></i>
   </a> -->
