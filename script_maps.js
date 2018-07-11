@@ -23,7 +23,7 @@ $('document').ready(function(){
     }
 	});
 	$('#select_map option').click(function() {
-		$('#map').attr('src', 'http://192.168.0.20:81/condor/maps/'+$(this).val()+".png");
+		$('#map').attr('src', 'http://127.0.0.1:81/condor/maps/'+$(this).val()+".png");
 		$('#place').slideUp();
 	});
 
@@ -57,13 +57,16 @@ $('document').ready(function(){
 					$.each(obj, function() {
 						$('#results').append('<option class="select_result" value="'+this['name']+'" data-plan="'+this['map']+'">'+this['display_name']+'</option>');
 					});
+					if (obj.length == 1) {
+						$('#results option:first-child').trigger('click');
+					}
 				}
 			});
 		}
 	});
 	
 	$('#results').on('click','.select_result', function() {
-		$('#map').attr('src', "http://192.168.0.20:81/condor/maps/"+$(this).attr('data-plan').substr(0,$(this).attr('data-plan').indexOf("."))+".png");
+		$('#map').attr('src', "http://127.0.0.1:81/condor/maps/"+$(this).attr('data-plan').substr(0,$(this).attr('data-plan').indexOf("."))+".png");
 
 		$.ajax({
 			url: 'get_map.php',
@@ -94,7 +97,7 @@ $('document').ready(function(){
 				}
 				switch (obj2[1]) {
 					case "NU":
-						toshow = "";
+						toshow = "Bâtiment du Lycée";
 						break;
 					case "GL":
 						toshow += " du Grand Lycée";

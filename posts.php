@@ -83,6 +83,7 @@ $('document').ready(function() {
 
 </style>
 <?php
+session_start();
 	$categories = json_decode($_SESSION['categories'], true);
 	$categories['rss'] = "Flux RSS";
 ?>
@@ -91,7 +92,7 @@ $('document').ready(function() {
 <div>
 <h1 id="title" >Billets et actualités</h1>
 </div>
-<div class="loader"></div>
+
 <div id="search_block">
 		<div id="mobile_search" class="flex-container"><span class="item-fluid">Recherche<i class="fa fa-search" style="padding-left: 5px;"></i></span><i id="display_search" class="icon-arrow--down item-last" style="cursor: pointer"></i></div>
 		<div id="form" class="right">
