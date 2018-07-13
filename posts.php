@@ -3,7 +3,7 @@
 <script>
 $('document').ready(function() {
 	
-	$('#posts_feed').load('posts_search.php?search=&all=on', function() { $('.loader').hide(); });
+	$('#posts_feed').load('posts_search.php?search=<?php if(isset($_GET['search'])) { echo $_GET['search']; } ?>&all=on', function() { $('.loader').hide(); });
 	$('#all').prop('checked', true);
 	$('#real_form').submit(function(e) {
 		e.preventDefault();
@@ -19,6 +19,7 @@ $('document').ready(function() {
 		} else {
 			$('.loader').show();
 			$('#content').load('post_display.php?id='+$(this).attr("id"), function() { $('.loader').hide(); });
+			history.pushState({url: 'post_display.php?id='+$(this).attr("id")}, "", "/condor_web/posts/"+$(this).attr("id"), false);
 		}
 	});
 	
@@ -34,6 +35,7 @@ $('document').ready(function() {
 	});
 	$('#send').click(function() {
 		$('.loader').show();
+		history.pushState({url: 'posts.php?search='+$('#search').val()+'&all=on'}, "", "/condor_web/posts/"+$('#search').val());
 		$.get('posts_search.php', $('#real_form').serialize()).done(function(data) {
 			$('#posts_feed').empty().append(data);
 			$('.loader').hide();
@@ -83,7 +85,9 @@ $('document').ready(function() {
 
 </style>
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 	$categories = json_decode($_SESSION['categories'], true);
 	$categories['rss'] = "Flux RSS";
 ?>
@@ -98,7 +102,7 @@ session_start();
 		<div id="form" class="right">
 			<form id="real_form">
 			<div id="field" class="flex-container">
-				<input type="search" class="item-fluid" name="search" id="search"/>
+				<input value="<?php if (isset($_GET['search'])) { echo $_GET['search']; } ?>" type="search" class="item-fluid" name="search" id="search"/>
 				<div class="w10 flex-container"><i class="fa fa-search item-center" id="launch" ></i></div>
 			</div>
 			<table id="selector">

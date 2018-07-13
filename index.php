@@ -28,31 +28,38 @@ foreach ($liste as $key => $value) {
 	</head>
 	<body>
 			<?php 
-			$data = array("posts", "events", "maps", "cvl", "transport", "canteen");
+			$data = array("posts", "events", "maps", "cvl", "transport", "canteen", 'mentions');
 			if(isset($_GET['module']) && in_array($_GET['module'], $data, true)) {
 				$var = "";
 				if (isset($_GET['id'])) {
-					switch ($_GET['id']) {
+					switch ($_GET['module']) {
 						case 'posts':
 								$var = 'post_display.php?id='.$_GET['id'];
 						break;
-						case 'maps':
-								$var = 'maps.php?id='.$_GET['id'];
-						break;
 					}
 				} else {
-					$var = $_GET['module'].'.php';
+					$var = $_GET['module'].'.php?';
+					foreach($_GET as $key => $value)
+					{
+						$var .= $key."=".$value."&";
+					}
 				}
+				?>
+				<script>$('document').ready(function() { $('nav a[data-id="<?php echo $_GET['module']; ?>/"]').addClass('active');});</script>
+				<?php
 			} else {
 				$var = 'index_content.php';
+				?>
+				<script>$('document').ready(function() { $('nav a[data-id=""]').addClass('active');});</script>
+				<?php
 			}
 			?>
-			<!-- <script>$('document').ready(function() { $('#content').load("<?php echo $var; ?>"); });</script>-->
+			 <script>$('document').ready(function() { $('#content').load("<?php echo $var; ?>"); });</script>
 			
 		<?php include('header.php'); include('navbar.php');?>
 		<div class="loader"></div>
 		<div id="content">
-			<?php include($var); ?>
+			
 		</div>
 		<?php include("footer.php"); ?>
 	</body>

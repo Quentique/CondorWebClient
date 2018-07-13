@@ -67,5 +67,10 @@ session_start();
 				</div>
 			<?php
 		}
+		if (empty($array)) {
+			?>
+			<h2 class="txtcenter">Aucun résultat</h2>
+			<?php
+		}
 	}
 ?>

@@ -23,8 +23,7 @@
 @font-face {
 	font-family: 'lcd2';
 	src: url('font/lcd2.eot');
-	src: url('font/ldc2.woff2') format('woff2'),
-		 url('font/lcd2.otf') format('truetype'),
+	src: url('font/lcc2.woff2') format('woff2'),
 		 url('font/lcd2.woff') format('woff'),
 		 url('font/lcd2.eot?#iefix') format('embedded-opentype');
 	font-weight: normal;
@@ -102,7 +101,7 @@
 @media screen and (max-width: 767px) {
 	.event {
 		width: 90%;
-		margin: 10px auto;
+		margin: 15px auto;
 		padding: 15px;
 	}
 }

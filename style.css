@@ -3,6 +3,7 @@ body {
 	background: url('background.jpg');
 	background-repeat: repeat;
 }
+
 .loader {
 	position: absolute;
 	left: 50%;
@@ -18,4 +19,7 @@ body {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+footer {
+	margin: 10px auto;
 }
