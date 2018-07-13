@@ -38,6 +38,11 @@ $_SESSION[$value] = $row['value'];
 	cursor: pointer;
 	box-shadow-color: #A9A9A9;
 }
+@media screen and (min-width: 768px) {
+	#fb {
+		width: 9.5rem;
+	}
+}
 @media screen and (max-width: 767px) {
 	#contact div {
 		margin: 10px auto;
@@ -46,7 +51,7 @@ $_SESSION[$value] = $row['value'];
 		width: auto;
 	}
 	#social_networks {
-		margin: 0 auto;
+		text-align: center;
 	}
 }
 </style>
@@ -66,7 +71,7 @@ $_SESSION[$value] = $row['value'];
 		</div>
 	</div>
 	<div id="social_networks" class="grid-2-small-2-tiny-2">
-		<a class='right' target="_blank" rel="noopener noreferrer" style="width: 9.5rem; padding-right: 0.5rem; padding-top: 0.5rem;" href="http://facebook.com/pg/<?php echo $_SESSION['facebook']; ?>"><img src="facebook.png"/></a>
+		<a class='right' target="_blank" rel="noopener noreferrer" id="fb" style=" padding-right: 0.5rem; padding-top: 0.5rem;" href="http://facebook.com/pg/<?php echo $_SESSION['facebook']; ?>"><img src="facebook.png"/></a>
 		<a class='left' style="margin-right: auto;" target="_blank" rel="noopener noreferrer" href="<?php echo $_SESSION['twitter']; ?>"><img src="twitter.png"/></a>
 		<a  class='right' target="_blank" rel="noopener noreferrer" href="<?php echo $_SESSION['website']; ?>"><img src="highschool.png"/></a>
 		<a  class="left" style="margin-right: auto;" target="_blank" rel="noopener noreferrer" href="<?php echo $_SESSION['ent'];?>"><img src="ent_logo_foreground.png"/></a>

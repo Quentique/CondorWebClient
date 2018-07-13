@@ -22,9 +22,10 @@ $('document').ready(function(){
         $('#launch').trigger('click');
     }
 	});
-	$('#select_map option').click(function() {
-		$('#map').attr('src', 'http://127.0.0.1:81/condor/maps/'+$(this).val()+".png");
+	$('#select_map').click(function() {
+		$('#map').attr('src', 'http://192.168.0.37:81/condor/maps/'+$('#select_map option:selected').val()+".png");
 		$('#place').slideUp();
+		history.pushState({url: 'maps.php?map='+$('#select_map option:selected').val()}, '', '/condor_web/maps/location/'+$('#select_map option:selected').val(), false);
 	});
 
 	$('#display_search').click(function() {
@@ -58,20 +59,22 @@ $('document').ready(function(){
 						$('#results').append('<option class="select_result" value="'+this['name']+'" data-plan="'+this['map']+'">'+this['display_name']+'</option>');
 					});
 					if (obj.length == 1) {
-						$('#results option:first-child').trigger('click');
+						$('#results option:first-child').attr('selected', true);
+						$('#results').trigger('change');
 					}
 				}
 			});
 		}
 	});
 	
-	$('#results').on('click','.select_result', function() {
-		$('#map').attr('src', "http://127.0.0.1:81/condor/maps/"+$(this).attr('data-plan').substr(0,$(this).attr('data-plan').indexOf("."))+".png");
+	$('#results').on('change', function() {
+		
+		$('#map').attr('src', "http://192.168.0.37:81/condor/maps/"+$('#results option:selected').attr('data-plan').substr(0,$('#results option:selected').attr('data-plan').indexOf("."))+".png");
 
 		$.ajax({
 			url: 'get_map.php',
 			type: 'GET',
-			data: 'query='+$(this).val(),
+			data: 'query='+$('#results option:selected').val(),
 			
 			datatype: 'json',
 			success: function(result, code) {
@@ -110,6 +113,7 @@ $('document').ready(function(){
 						break;
 				}
 				$('#location').empty().append("<strong>Emplacement : </strong>"+toshow);
+				history.pushState({url: 'maps.php/'+data['name']}, '', data['name'], false);
 			}
 		});
 	});

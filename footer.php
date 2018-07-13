@@ -1,3 +1,3 @@
-<footer class="txtcenter" style="font-size: 12px; position: absolute; margin-bottom: 10px; width: 100%;"> 
-	© Condor 2017-2018 - <a href="cgu.html">Mentions Légales</a>
+<footer class="txtcenter" style="font-size: 12px; display:block; "> 
+	© Condor 2017-2018 - <a id="mentions" href="mentions.php">Mentions Légales</a> - <a id="cgu" href="cgu.php">CGU de Condor mobile</a>
 </footer>

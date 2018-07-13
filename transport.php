@@ -26,7 +26,7 @@
 	padding: 0 10%;
 	margin-bottom: 2%;
 }
-#transport h2, #transport h3 {
+#transport a {
 	text-decoration: none;
 }
 #transport h3 {
@@ -42,6 +42,7 @@
 }
 
 .c {
+	text-decoration: none;
 	width: 30rem;
 	display: inline-block;
 	vertical-align: middle;

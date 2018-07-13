@@ -2,7 +2,7 @@
 .topnav {
   overflow: hidden;
   background-color: #333;
-  height: 100%;
+  //height: 100%;
 }
 
 .topnav a, .fa-bars {
@@ -59,13 +59,13 @@
 }
 </style>
 <nav class="topnav" id="myTopnav">
-  <a data-id="" href="index_content.php" class="fa fa-home fa-* active"><i></i></a>
-  <a data-id="post" href="posts.php" >Actualités</a>
-  <a data-id="event" href="events.php">Évènements</a>
-  <a data-id="cantine" href="canteen.php">Cantine</a>
-  <a data-id="cvl" href="cvl.php" >CVL & MDL</a>
-  <a data-id="maps" href="maps.php" >Plans</a>
-  <a data-id="transport" href="transport.php">Transports</a>
+  <a data-id="" href="index_content.php" class="fa fa-home fa-2x"><i></i></a>
+  <a data-id="posts/" href="posts.php" >Actualités</a>
+  <a data-id="events/" href="events.php">Évènements</a>
+  <a data-id="canteen/" href="canteen.php">Cantine</a>
+  <a data-id="cvl/" href="cvl.php" >CVL & MDL</a>
+  <a data-id="maps/" href="maps.php" >Plans</a>
+  <a data-id="transport/" href="transport.php">Transports</a>
  <!-- <a href="javascript:void(0);" class="nav-button" >
 <i></i>
   </a> -->

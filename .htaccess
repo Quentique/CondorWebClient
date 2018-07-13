@@ -3,17 +3,23 @@ AuthName "Password Protected Area"
 AuthUserFile H:/xampp/htdocs/condor_web/.htpasswd
 Require valid-user
 
-RedirectMatch permanent ^\/posts\/(.+\.(css|js|png)+)$  /$1
 
 <IfModule mod_rewrite.c>
 Options +FollowSymlinks
 RewriteEngine On
 RewriteBase /condor_web
 
-RewriteRule ^(posts|events|cvl|transport|maps|canteen)$ $1/
+RewriteRule ^home /condor_web [L]
+RewriteRule ^(posts|events|cvl|transport|maps|canteen|mentions|cgu)$ $1/
 RewriteRule ^(.+)\/$ index.php?module=$1 [L]
-RewriteRule ^(.+)\/(.+)\.(.+)$ $2.$3 [L]
-RewriteRule ^posts\/(\d+)$ index.php?module=posts&id=$1 [L]
-RewriteRule ^maps\/([a-z]+)$ index.php?module=maps&id=$1 [L]
 
+RewriteRule ^posts\/(\d+)$ index.php?module=posts&id=$1 [L]
+RewriteRule ^posts\/(\w+)$ index.php?module=posts&search=$1 [L]
+RewriteRule ^maps\/location\/(\d?[A-Z]{3})$ index.php?module=maps&map=$1 [L]
+RewriteRule ^maps\/([a-zA-Z0-9]+)$ index.php?module=maps&place=$1 [L]
+RewriteRule ^(.+)\/(.+)\.(.+)$ $2.$3
+
+#RewriteCond %{HTTP_REFERER} !^http://(www\.)?192.168.0.37:81 [NC] 
+#RewriteCond %{HTTP_REFERER} !^http://(www\.)?192.168.0.37:81.*$ [NC] 
+#RewriteRule \.(gif|png|js|css|svg)$ - [F]
 </IfModule>
