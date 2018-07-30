@@ -20,9 +20,9 @@ if (isset($_GET['map'])) {
 }
 ?>
 <div id="mobile_container" class="grid-2-small-1">
-	<div id="info"> 
+	<div id="info"> <p id="information_text">Cette page vous permet de rechercher des lieux spécifiques du lycée, ou bien simplement de visualiser les plans de celui-ci.</p>
+
 	<h2 id="title">Cartes & Plans</h2>
-	<p id="information_text">Cette page vous permet de rechercher des lieux spécifiques du lycée, ou bien simplement de visualiser les plans de celui-ci.</p>
 	<p id="desc"></p>
 	<p id="location"></p>
 	</div>
@@ -51,5 +51,5 @@ if (isset($_GET['map'])) {
 </div>
 <div id="map_container">
 	<img id="place" src="place.png" style="position:absolute; top:0; left:0;"/>
-	<img id="map" src="<?php echo "http://192.168.0.37:81/condor/"."maps/".$to_show;?>"/>
+	<img id="map" src="<?php echo HOST."maps/".$to_show;?>"/>
 </div>

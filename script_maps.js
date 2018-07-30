@@ -1,3 +1,4 @@
+const site = "https://cvlcondorcet.fr/"
 function resize(xper, yper) {
 	$("#place").css("top", $('#map').height()*yper-$('#place').height());
 	$("#place").css("left", $('#map').width()*xper-$('#place').width()/2);
@@ -23,9 +24,9 @@ $('document').ready(function(){
     }
 	});
 	$('#select_map').click(function() {
-		$('#map').attr('src', 'http://192.168.0.37:81/condor/maps/'+$('#select_map option:selected').val()+".png");
+		$('#map').attr('src', site+'maps/'+$('#select_map option:selected').val()+".png");
 		$('#place').slideUp();
-		history.pushState({url: 'maps.php?map='+$('#select_map option:selected').val()}, '', '/condor_web/maps/location/'+$('#select_map option:selected').val(), false);
+		history.pushState({url: 'maps.php?map='+$('#select_map option:selected').val()}, '', '/maps/location/'+$('#select_map option:selected').val(), false);
 	});
 
 	$('#display_search').click(function() {
@@ -67,9 +68,9 @@ $('document').ready(function(){
 		}
 	});
 	
-	$('#results').on('change', function() {
+	$('#results').on('change click', function() {
 		
-		$('#map').attr('src', "http://192.168.0.37:81/condor/maps/"+$('#results option:selected').attr('data-plan').substr(0,$('#results option:selected').attr('data-plan').indexOf("."))+".png");
+		$('#map').attr('src', site+"maps/"+$('#results option:selected').attr('data-plan').substr(0,$('#results option:selected').attr('data-plan').indexOf("."))+".png");
 
 		$.ajax({
 			url: 'get_map.php',
@@ -113,7 +114,7 @@ $('document').ready(function(){
 						break;
 				}
 				$('#location').empty().append("<strong>Emplacement : </strong>"+toshow);
-				history.pushState({url: 'maps.php/'+data['name']}, '', data['name'], false);
+				history.pushState({url: 'maps.php/'+data['name']}, '', '/maps/'+data['name'], false);
 			}
 		});
 	});

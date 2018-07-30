@@ -1,4 +1,4 @@
-const website = 'http://192.168.0.37:81/condor_web/';
+const website = 'https://app.cvlcondorcet.fr/';
 function change(state) {
 	$('.loader').show();
 	if (state == null) {

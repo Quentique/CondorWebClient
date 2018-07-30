@@ -22,7 +22,7 @@ if (isset($_GET['id'])) {
 				</div>
 			<div id="content">
 				<img class="img_pra fl"  src="<?php echo $row['picture'];?>"/>
-				<div><?php echo $row['content']; ?></div>
+				<div><?php echo html_entity_decode($row['content']); ?></div>
 			</div>
 		</div>
 		<?php 
@@ -38,7 +38,7 @@ if (isset($_GET['id'])) {
 	width: auto;
 	height: auto;
 }
-#content img {
+#content > img {
 	width: auto;
 	height: auto;
 }

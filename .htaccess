@@ -1,25 +1,35 @@
 AuthType Basic
 AuthName "Password Protected Area"
-AuthUserFile H:/xampp/htdocs/condor_web/.htpasswd
+AuthUserFile /home/cvlcondoxg/app/.htpasswd
 Require valid-user
 
-
-<IfModule mod_rewrite.c>
-Options +FollowSymlinks
 RewriteEngine On
-RewriteBase /condor_web
+RewriteCond %{HTTPS} off
+RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI}
 
-RewriteRule ^home /condor_web [L]
-RewriteRule ^(posts|events|cvl|transport|maps|canteen|mentions|cgu)$ $1/
+RewriteCond %{REQUEST_URI} /cgu
+RewriteRule ^/cgu /cgu.html
+
+RewriteRule (posts|events|cvl|transport|maps|canteen|mentions)$ $1/
 RewriteRule ^(.+)\/$ index.php?module=$1 [L]
 
-RewriteRule ^posts\/(\d+)$ index.php?module=posts&id=$1 [L]
-RewriteRule ^posts\/(\w+)$ index.php?module=posts&search=$1 [L]
-RewriteRule ^maps\/location\/(\d?[A-Z]{3})$ index.php?module=maps&map=$1 [L]
-RewriteRule ^maps\/([a-zA-Z0-9]+)$ index.php?module=maps&place=$1 [L]
-RewriteRule ^(.+)\/(.+)\.(.+)$ $2.$3
+RewriteRule ^posts\/(\d+)$  /index.php?module=posts&id=$1 [L]
+RewriteRule ^posts\/(\w+)$ /index.php?module=posts&search=$1 [L]
+RewriteRule ^events\/(\d+)$ /index.php?module=events&key=$1 [L]
+RewriteRule ^maps\/location\/(\d?[A-Z]{3})$ /index.php?module=maps&map=$1 [L]
+RewriteRule ^maps\/([a-zA-Z0-9]+)$ /index.php?module=maps&place=$1 [L]
 
-#RewriteCond %{HTTP_REFERER} !^http://(www\.)?192.168.0.37:81 [NC] 
-#RewriteCond %{HTTP_REFERER} !^http://(www\.)?192.168.0.37:81.*$ [NC] 
-#RewriteRule \.(gif|png|js|css|svg)$ - [F]
-</IfModule>
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ / [R,L]
+
+RewriteCond %{HTTP_REFERER} !^https://(www\.)?app\.cvlcondorcet\.fr [NC] 
+RewriteCond %{HTTP_REFERER} !^https://(www\.)?app\.cvlcondorcet\.fr.*$ [NC] 
+RewriteRule \.(gif|png|js|css|svg|jpg|jpeg)$ - [F]
+
+Options -Indexes
+
+ErrorDocument 403 /403.php
+ErrorDocument 404 /404.php
+ErrorDocument 500 /505.php

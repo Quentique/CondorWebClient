@@ -19,7 +19,7 @@ $('document').ready(function() {
 		} else {
 			$('.loader').show();
 			$('#content').load('post_display.php?id='+$(this).attr("id"), function() { $('.loader').hide(); });
-			history.pushState({url: 'post_display.php?id='+$(this).attr("id")}, "", "/condor_web/posts/"+$(this).attr("id"), false);
+			history.pushState({url: 'post_display.php?id='+$(this).attr("id")}, "", "/posts/"+$(this).attr("id"), false);
 		}
 	});
 	
@@ -35,7 +35,7 @@ $('document').ready(function() {
 	});
 	$('#send').click(function() {
 		$('.loader').show();
-		history.pushState({url: 'posts.php?search='+$('#search').val()+'&all=on'}, "", "/condor_web/posts/"+$('#search').val());
+		history.pushState({url: 'posts.php?search='+$('#search').val()+'&all=on'}, "", "/posts/"+$('#search').val());
 		$.get('posts_search.php', $('#real_form').serialize()).done(function(data) {
 			$('#posts_feed').empty().append(data);
 			$('.loader').hide();

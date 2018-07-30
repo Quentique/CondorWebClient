@@ -25,7 +25,7 @@ session_start();
 		$url = $request->fetch();
 		$categories = json_decode($_SESSION['categories'], true);
 		$categories['rss'] = "Flux RSS";
-		$request = $bdd->prepare("SELECT id, name, REGEXP_SUBSTR (content, '.{400}?') AS content, date, picture, categories FROM ".TABLE_POSTS." WHERE state = 'published' ".$to_add." LIMIT 100");
+		$request = $bdd->prepare("SELECT id, name, SUBSTR(content, 1, 401) AS content, date, picture, categories FROM ".TABLE_POSTS." WHERE state = 'published' ".$to_add." LIMIT 100");
 		$array = array();
 		if ($request->execute()) {
 			while ($row = $request->fetch(PDO::FETCH_ASSOC)) {
