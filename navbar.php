@@ -5,6 +5,16 @@
   //height: 100%;
 }
 
+
+a.active {
+  background-color: <?php echo $_SESSION['color'];?>;
+  color: white !important;
+}
+
+.topnav .fa-bars {
+  display: none;
+  background: transparent;
+}
 .topnav a, .fa-bars {
   float: left;
   display: block;
@@ -23,16 +33,6 @@
 .topnav a:hover, .fa-bars:hover {
   background-color: #ddd;
   color: black;
-}
-
-.active {
-  background-color: <?php echo $_SESSION['color'];?>;
-  color: white;
-}
-
-.topnav .fa-bars {
-  display: none;
-  background: transparent;
 }
 
 @media screen and (max-width: 768px) {
@@ -60,12 +60,12 @@
 </style>
 <nav class="topnav" id="myTopnav">
   <a data-id="" href="index_content.php" class="fa fa-home fa-2x"><i></i></a>
-  <a data-id="posts/" href="posts.php" >Actualités</a>
-  <a data-id="events/" href="events.php">Évènements</a>
-  <a data-id="canteen/" href="canteen.php">Cantine</a>
-  <a data-id="cvl/" href="cvl.php" >CVL & MDL</a>
-  <a data-id="maps/" href="maps.php" >Plans</a>
-  <a data-id="transport/" href="transport.php">Transports</a>
+  <a data-id="posts/" href="posts2.php" >Actualités</a>
+  <a data-id="events/" href="events2.php">Évènements</a>
+  <a data-id="canteen/" href="canteen2.php">Cantine</a>
+  <a data-id="cvl/" href="cvl2.php" >CVL & MDL</a>
+  <a data-id="maps/" href="maps2.php" >Plans</a>
+  <a data-id="transport/" href="transport2.php">Transports</a>
  <!-- <a href="javascript:void(0);" class="nav-button" >
 <i></i>
   </a> -->

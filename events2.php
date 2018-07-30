@@ -2,7 +2,7 @@
 <?php 
 	require_once('db_constants.php');
 	$bdd = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USERNAME, DB_PASSWORD);
-	$request = $bdd->prepare("SELECT * FROM ". TABLE_EVENTS . " WHERE state = 'published'");
+	$request = $bdd->prepare("SELECT * FROM ". TABLE_EVENTS . " WHERE state = 'published' ORDER BY start DESC");
 	if ($request->execute()) {
 		$days = array('Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi');
 		while($row = $request->fetch()) {
@@ -13,7 +13,7 @@
 			$bool = ($date1['yday'] == $date2['yday']) ? false : true;
 			
 			?>
-				<div class="event <?php if ($bool) { echo "two"; } ?>">
+				<div id="<?php echo $row['id'];?>" class="event <?php if ($bool) { echo "two"; } ?>">
 					<div class="times">
 						<span class="margin"><?php echo ($bool) ? 'Du' : 'Le'; ?></span>
 						<div class="post-date">
@@ -22,7 +22,7 @@
 							<span class="month"><?php echo date("M", $date3) ?></span>
 						</div>
 						<?php echo ($bool) ? '' :'<span class="margin">de</span>'; ?>
-						<?php if (!$bool) { ?><span class="begin_time"><?php echo date("H:i", $date3) ?></span><?php }
+						<?php if (!$bool) { ?><span class="begin_time"><span><?php echo date("H", $date3) ?></span><span class="blink">:</span><span><?php echo date("i", $date3); ?></span></span><?php }
 						if ($bool) { ?>
 							<span class="margin">au</span>
 							<div class="post-date">
@@ -32,7 +32,7 @@
 							</div>
 						<?php } else {?>
 						<span class="margin">à</span>
-						<span class="end_time"><?php echo date("H:i", $date4); ?></span>
+						<span class="end_time"><span><?php echo date("H", $date4) ?></span><span class="blink">:</span><span><?php echo date("i", $date4); ?></span></span>
 						<?php } ?>
 					</div>
 					<div class="content_event">
@@ -42,6 +42,19 @@
 						<img src="<?php echo $row['picture'];?>" class="fl"/>
 					</div>
 				</div>
+			<?php
+		}
+		if (isset($_GET['key'])) {
+			?>
+			<script>
+			$(function() {
+				console.log("testttt");
+				setTimeout(function () {$('html, body').animate({
+					scrollTop: $("#<?php echo $_GET['key'];?>").offset().top
+					}, 1500);
+				}, 1000);
+			});
+			</script>
 			<?php
 		}
 	}
