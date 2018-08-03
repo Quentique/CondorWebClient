@@ -35,6 +35,8 @@ foreach ($liste as $key => $value) {
 		<script src="https://cvlcondorcet.fr/ckeditor/plugins/slideshow/3rdParty/jquery.min.js" type="text/javascript"></script>
 		<script src="https://cvlcondorcet.fr/ckeditor/plugins/slideshow/3rdParty/ad-gallery/jquery.ad-gallery.min.js" type="text/javascript"></script>
 		<script src="script.js"></script>
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 		<title>Condor</title>
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
 <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
@@ -57,10 +59,29 @@ window.cookieconsent.initialise({
     "href": "https://app.cvlcondorcet.fr/mentions"
   }
 })});
+$(function() {
+	$( "#dialog-confirm" ).dialog({
+      resizable: false,
+      height: "auto",
+      width: "auto",
+      modal: true,
+      buttons: {
+        "Installer l'application": function() {
+         window.location.replace("https://play.google.com/store/apps/details?id=com.cvlcondorcet.condor");
+        },
+        "Non merci": function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
+});
 </script>
 	</head>
 	<body>
 			<?php 
+			if (strpos($_SERVER['HTTP_USER_AGENT'], "Android") !== false) {
+				echo '<div id="dialog-confirm" title="Installer Condor ?"><p>Vous possédez vraisemblablement un smartphone Android. <br/><strong>Pourquoi ne pas installer la version Android de Condor ?</p></strong></div>';
+			}
 			if ($test['value'] == 'NORMAL') {
 			$data = array("posts", "events", "maps", "cvl", "transport", "canteen", 'mentions');
 			if(isset($_GET['module']) && in_array($_GET['module'], $data, true)) {

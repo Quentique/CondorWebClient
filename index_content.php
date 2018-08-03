@@ -1,7 +1,7 @@
 <?php 
 require_once('db_constants.php');
 $bdd = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USERNAME, DB_PASSWORD);
-$liste = ["tel1", "tel2", "mail", "facebook", "twitter", "website", "ent"];
+$liste = ["tel1", "tel2", "mail", "social_networks"];
 foreach ($liste as $key => $value) {
 $request = $bdd->prepare("SELECT * FROM " . TABLE_GENERAL . " WHERE name = :id");
 $request->bindParam(":id", $value);
@@ -17,7 +17,11 @@ $_SESSION[$value] = $row['value'];
 	margin-right: 1rem;
 }
 #social_networks img {
-	width: 10rem;
+	min-width: 10rem;
+	margin: auto;
+}
+#social_networks a {
+	display: inherit;
 }
 #social_networks img:hover {
 	box-shadow: 2px 2px 1px 1px #ccc;
@@ -70,10 +74,13 @@ $_SESSION[$value] = $row['value'];
 			<a href="mailto:<?php echo $_SESSION['mail']; ?>"><?php echo $_SESSION['mail']; ?></a>
 		</div>
 	</div>
-	<div id="social_networks" class="grid-2-small-2-tiny-2">
-		<a class='right' target="_blank" rel="noopener noreferrer" id="fb" style=" padding-right: 0.5rem; padding-top: 0.5rem;" href="http://facebook.com/pg/<?php echo $_SESSION['facebook']; ?>"><img src="facebook.png"/></a>
-		<a class='left' style="margin-right: auto;" target="_blank" rel="noopener noreferrer" href="<?php echo $_SESSION['twitter']; ?>"><img src="twitter.png"/></a>
-		<a  class='right' target="_blank" rel="noopener noreferrer" href="<?php echo $_SESSION['website']; ?>"><img src="highschool.png"/></a>
-		<a  class="left" style="margin-right: auto;" target="_blank" rel="noopener noreferrer" href="<?php echo $_SESSION['ent'];?>"><img src="ent_logo_foreground.png"/></a>
+	<div id="social_networks" class="grid-4-small-3-tiny-2 has-gutter-xl">
+	<?php 	
+	$table = json_decode($row['value'], true);
+	foreach ($table as $key=>$value) {
+	?>
+		<a target="_blank" rel="noopener noreferrer" href="<?php echo $value['link'];?>"><img src="<?php echo HOST."uploads/".$value['image']; ?>" alt="<?php echo $value['title'];?>"/></a>
+		
+	<?php } ?>
 	</div>
 </div>
